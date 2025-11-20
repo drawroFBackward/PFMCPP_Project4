@@ -125,10 +125,26 @@ struct FloatType
     {
         *value = val;
 	}
-    float add( float lhs, float rhs );
-    float subtract( float lhs, float rhs );
-    float multiply( float lhs, float rhs );
-    float divide( float lhs, float rhs );
+	FloatType& add(float rhs)
+    {
+        *value += rhs;
+        return *this;
+	}
+    FloatType& subtract(float rhs)
+    {
+        *value -= rhs;
+        return *this;
+	}
+    FloatType& multiply(float rhs)
+    {
+        *value *= rhs;
+        return *this;
+    }
+    FloatType& divide(float rhs)
+    {
+        *value /= rhs;
+        return *this;
+	}
 	float* value = new float;
     ~FloatType()
     {
@@ -142,10 +158,26 @@ struct DoubleType
     {
 		*value = val;
 	}
-    double add(double lhs, double rhs);
-    double subtract(double lhs, double rhs);
-    double multiply(double lhs, double rhs);
-    double divide(double lhs, double rhs);
+    DoubleType& add(double rhs)
+    {
+		*value += rhs;
+		return *this;
+    }
+    DoubleType& subtract(double rhs)
+	{
+        *value -= rhs;
+        return *this;
+    }
+    DoubleType& multiply(double rhs)
+    {
+        *value *= rhs;
+        return *this;
+    }
+    DoubleType& divide(double rhs)
+    {
+        *value /= rhs;
+        return *this;
+	}
 	double* value = new double;
     ~DoubleType()
     {
@@ -159,10 +191,26 @@ struct IntType
     {
         *value = val;
 	}
-	int add(int lhs, int rhs);
-	int subtract(int lhs, int rhs);
-	int multiply(int lhs, int rhs);
-	int divide(int lhs, int rhs);
+    IntType& add(int rhs)
+    {
+        *value += rhs;
+        return *this;
+    }
+    IntType& subtract(int rhs)
+    {
+        *value -= rhs;
+        return *this;
+	}
+    IntType& multiply(int rhs)
+    {
+        *value *= rhs;
+        return *this;
+    }
+    IntType& divide(int rhs)
+    {
+        *value /= rhs;
+        return *this;
+    }
     int* value = new int;
     ~IntType()
     {
@@ -170,134 +218,56 @@ struct IntType
 	}
 };
 
-float FloatType::add( float lhs, float rhs )
-{
-    return lhs + rhs;
-}
-
-float FloatType::subtract( float lhs, float rhs )
-{
-    return lhs - rhs;
-}
-
-float FloatType::multiply( float lhs, float rhs )
-{
-    return lhs * rhs;
-}
-
-float FloatType::divide( float lhs, float rhs )
-{
-    if (rhs == 0.0f)
-    {
-        std::cout << std::endl << "warning, floating point division by zero returns 'inf' !" << std::endl;
-    }
-    return lhs / rhs;
-}
-
-double DoubleType::add(double lhs, double rhs)
-{
-    return lhs + rhs;
-}
-
-double DoubleType::subtract(double lhs, double rhs)
-{
-    return lhs - rhs;
-}
-
-double DoubleType::multiply(double lhs, double rhs)
-{
-    return lhs * rhs;
-}
-
-double DoubleType::divide(double lhs, double rhs)
-{
-    if (rhs == 0.0)
-    {
-        std::cout << std::endl << "warning, floating point division by zero returns 'inf' !" << std::endl;
-    }
-    return lhs / rhs;
-}
-
-int IntType::add(int lhs, int rhs)
-{
-    return lhs + rhs;
-}
-
-int IntType::subtract(int lhs, int rhs)
-{
-    return lhs - rhs;
-}
-
-int IntType::multiply(int lhs, int rhs)
-{
-    return lhs * rhs;
-}
-
-int IntType::divide(int lhs, int rhs)
-{
-    if (rhs == 0)
-    {
-        std::cout << "error, integer division by zero will crash the program!" << std::endl;
-        std::cout << "returning lhs" << std::endl;
-        return lhs;
-    }
-    return lhs / rhs;
-}
-
 /*
 your program should generate the following output EXACTLY.
 This includes the warnings.
-Use a service like https://www.diffchecker.com/diff to compare your output. 
-you should have no errors or warnings.
+Use a service like https://www.diffchecker.com/diff to compare your output.
+you'll learn to solve the conversion warnings in the next project part.
 
+18 warnings generated.
+FloatType add result=4
+FloatType subtract result=2
+FloatType multiply result=4
+FloatType divide result=0.25
 
-clang++ -std=c++17 -Weverything -Wno-c++98-compat -Wno-missing-prototypes main.cpp && ./a.out
-result of ft.add(): 555.556
-result of ft.subtract(): -308.644
-result of ft.multiply(): 53345.3
-result of ft.divide(): 0.285712
-result of ft.add(): 4444.56
-result of ft.subtract(): 4444.56
-result of ft.multiply(): 0
-result of ft.divide(): 
-warning, floating point division by zero returns 'inf' !
+DoubleType add result=4
+DoubleType subtract result=2
+DoubleType multiply result=4
+DoubleType divide result=0.8
+
+IntType add result=4
+IntType subtract result=2
+IntType multiply result=4
+IntType divide result=1
+
+Chain calculation = 590
+New value of ft = (ft + 3.0f) * 1.5f / 5.0f = 0.975
+---------------------
+
+Initial value of dt: 0.8
+Initial value of it: 590
+Use of function concatenation (mixed type arguments)
+New value of dt = (dt * it) / 5.0f + ft = 95.375
+---------------------
+
+Intercept division by 0
+New value of it = it / 0 = error: integer division by zero is an error and will crash the program!
+590
+New value of ft = ft / 0 = warning: floating point division by zero!
 inf
-result of db.add(): 555.556
-result of db.subtract(): -308.644
-result of db.multiply(): 53345.3
-result of db.divide(): 0.285712
-result of db.add(): 123.456
-result of db.subtract(): 123.456
-result of db.multiply(): 0
-result of db.divide(): 
-warning, floating point division by zero returns 'inf' !
+New value of dt = dt / 0 = warning: floating point division by zero!
 inf
-result of i.add(): 30
-result of i.subtract(): -10
-result of i.multiply(): 200
-result of i.divide(): 0
-result of i.add(): 10
-result of i.subtract(): 10
-result of i.multiply(): 0
-result of i.divide(): error, integer division by zero will crash the program!
-returning lhs
-10
+---------------------
+
 good to go!
+
+
+
+
+
 */
 
-/*
- MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
-
- Commit your changes by clicking on the Source Control panel on the left, entering a message, and click [Commit and push].
- 
- If you didn't already: 
-    Make a pull request after you make your first commit
-    pin the pull request link and this repl.it link to our DM thread in a single message.
-
- send me a DM to review your pull request when the project is ready for review.
-
- Wait for my code review.
- */
+#include <iostream>
 
 int main()
 {
@@ -308,6 +278,7 @@ int main()
     FloatType ft(2.0f);
     DoubleType dt(2);
     IntType it(2);
+
     std::cout << "FloatType add result=" << ft.add(2.0f).value << std::endl;
     std::cout << "FloatType subtract result=" << ft.subtract(2.0f).value << std::endl;
     std::cout << "FloatType multiply result=" << ft.multiply(2.0f).value << std::endl;
@@ -353,3 +324,4 @@ int main()
 
     return 0;
 }
+
