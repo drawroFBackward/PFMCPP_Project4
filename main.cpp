@@ -1,17 +1,38 @@
 /*
- Project 4 - Part 2 / 9
- Video: Chapter 3 Part 6
+ Project 4 - Part 3 / 9
+ Video: Chapter 4 Part 3
+ Casting
 
- Create a branch named Part2
+ Create a branch named Part3
 
-New/This/Pointers/References conclusion
+ do not remove anything from main().  you'll be revising your main() to work with these new code changes.
 
     Build/Run often with this task to make sure you're not breaking the code with each step.
     I recommend committing after you get each step working so you can revert to a working version easily if needed.
- 
- 0) in the blank space below, declare/define an empty struct named 'A' on a single Line. 
-     on the lines below it, write a struct named 'HeapA' that correctly shows how to own an instance of 'A' 
-         on the heap without leaking, without using smart pointers. 
+
+ 1) remove your functions that accepted a User-Defined Type
+
+ 2) remove any getValue() functions if you added them
+
+ 3) move all of your add/subtract/multiply/divide implementations out of the class.
+
+ 4) add user-defined conversion functions that convert to the numeric type your object holds.
+        i.e. if your type holds an int, you'll need an operator int() function.
+        REMEMBER: if a member function doesn't modify any member variables of the class it exists in, what qualifier can we add to that function's signature?
+
+ 5) make your member variable private.
+         this conversion function should be the ONLY WAY to access the held value.
+         use the proper casting technique to invoke this conversion function
+
+ 6) make sure it compiles & runs without errors.
+
+ 7) use your knowledge of casting to remove any conversion warnings.
+
+ 8) insert 'part3();' before the 'good to go' at the end of your main();
+        move this part3 function to before main()
+
+ 9) click the [run] button.  Clear up any errors or warnings as best you can.
+
  */
 
 
@@ -32,39 +53,6 @@ struct HeapA
         delete aPtr;
 	}
 };
-
-
- /*
- 1) Edit your 3 structs so that they own a heap-allocated primitive type without using smart pointers named 'value'
-         IntType should own a heap-allocated int, for example.
- 
- 2) give it a constructor that takes the appropriate primitive
-    this argument will initialize the owned primitive's value.
-         i.e. if you're owning an int on the heap, your ctor argument will initialize that heap-allocated int's value.
- 
- 3) modify those add/subtract/divide/multiply member functions from chapter 2 on it
-         a) make them modify the owned numeric type
-         b) set them up so they can be chained together.
-             i.e.
-             DoubleType dt(3.5);
-             dt.add(3.0).multiply(-2.5).divide(7.2); //an example of chaining
- 
- 4) write add/subtract/divide/multiply member functions for each type that take your 3 UDTs
-        These are in addition to your member functions that take primitives
-        for example, IntType::divide(const DoubleType& dt);
-        These functions should return the result of calling the function that takes the primitive.
-        This technique of having multiple functions with the same name and different function arguments is known as 'function overloading' or 'overloaded functions'.
-        This topic will be covered in Chapter 4 Part 7.
-     
- 5) Don't let your heap-allocated owned type leak!
- 
- 6) replace your main() with the main() below.
-    It has some intentional mistakes that you need to fix to match the expected output
-    i.e. don't forget to dereference your pointers to get the value they hold.
-    Do not change any values being passed into the functions.
-
- 7) click the [run] button.  Clear up any errors or warnings as best you can.
- */
 
 /*
 your program should generate the following output EXACTLY.
