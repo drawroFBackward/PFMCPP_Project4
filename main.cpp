@@ -133,34 +133,6 @@ struct FloatType
         *value /= rhs;
         return *this;
 	}
-	//overloaded functions
-    //FloatType
-    FloatType& add(const FloatType& rhs)
-    {
-		return add(*rhs.value);
-    }
-    FloatType& subtract(const FloatType& rhs)
-	{
-        return subtract(*rhs.value);
-    }
-    FloatType& multiply(const FloatType& rhs)
-    {
-        return multiply(*rhs.value);
-    }
-    FloatType& divide(const FloatType& rhs)
-    {
-        return divide(*rhs.value);
-	}
-	//DoubleType
-    FloatType& add(const DoubleType& rhs);
-    FloatType& subtract(const DoubleType& rhs);
-    FloatType& multiply(const DoubleType& rhs);
-    FloatType& divide(const DoubleType& rhs);
-    //IntType
-    FloatType& add(const IntType& rhs);
-    FloatType& subtract(const IntType& rhs);
-    FloatType& multiply(const IntType& rhs);
-    FloatType& divide(const IntType& rhs);
 	float* value = new float;
     ~FloatType()
     {
@@ -194,46 +166,6 @@ struct DoubleType
         *value /= rhs;
         return *this;
 	}
-	//overloaded functions
-    //FloatType
-    DoubleType& add(const FloatType& rhs)
-    {
-        return add(*rhs.value);
-    }
-    DoubleType& subtract(const FloatType& rhs)
-    {
-        return subtract(*rhs.value);
-    }
-    DoubleType& multiply(const FloatType& rhs)
-    {
-        return multiply(*rhs.value);
-    }
-    DoubleType& divide(const FloatType& rhs)
-    {
-        return divide(*rhs.value);
-	}
-	//DoubleType
-    DoubleType& add(const DoubleType& rhs)
-    {
-        return add(*rhs.value);
-    }
-    DoubleType& subtract(const DoubleType& rhs)
-    {
-        return subtract(*rhs.value);
-    }
-    DoubleType& multiply(const DoubleType& rhs)
-    {
-        return multiply(*rhs.value);
-    }
-    DoubleType& divide(const DoubleType& rhs)
-    {
-        return divide(*rhs.value);
-    }
-    //IntType
-    DoubleType& add(const IntType& rhs);
-    DoubleType& subtract(const IntType& rhs);
-    DoubleType& multiply(const IntType& rhs);
-    DoubleType& divide(const IntType& rhs);
 	double* value = new double;
     ~DoubleType()
     {
@@ -272,116 +204,12 @@ struct IntType
         *value /= rhs;
 		return *this;
     }
-	//overloaded functions
-	//FloatType
-    IntType& add(FloatType& rhs)
-    {
-        return add(*rhs.value);
-    }
-    IntType& subtract(FloatType& rhs)
-    {
-        return subtract(*rhs.value);
-	}
-    IntType& multiply(FloatType& rhs)
-    {
-        return multiply(*rhs.value);
-	}
-    IntType& divide(FloatType& rhs)
-    {
-		return divide(*rhs.value);
-	}
-	//DoubleType
-    IntType& add(DoubleType& rhs)
-    {
-        return add(*rhs.value);
-	}
-    IntType& subtract(DoubleType& rhs)
-    {
-		return subtract(*rhs.value);
-	}
-    IntType& multiply(DoubleType& rhs)
-    {
-		return multiply(*rhs.value);
-	}
-    IntType& divide(DoubleType& rhs)
-	{
-		return divide(*rhs.value);
-	}
-	//IntType
-    IntType& add(IntType& rhs)
-    {
-		return add(*rhs.value);
-	}
-    IntType& subtract(IntType& rhs)
-    {
-		return subtract(*rhs.value);
-	}
-    IntType& multiply(IntType& rhs)
-	{
-		return multiply(*rhs.value);
-	}
-    IntType& divide(IntType& rhs)
-	{
-		return divide(*rhs.value);
-	}
     int* value = new int;
     ~IntType()
     {
         delete value;
 	}
 };
-// Remaining implementations of overloaded functions
-//FloatType
-FloatType& FloatType::add(const DoubleType& rhs)
-{
-    return add(*rhs.value);
-}
-FloatType& FloatType::subtract(const DoubleType& rhs)
-{
-    return subtract(*rhs.value);
-}
-FloatType& FloatType::multiply(const DoubleType& rhs)
-{
-    return multiply(*rhs.value);
-}
-FloatType& FloatType::divide(const DoubleType& rhs)
-{
-    return divide(*rhs.value);
-}
-FloatType& FloatType::add(const IntType& rhs)
-{
-    return add(*rhs.value);
-}
-FloatType& FloatType::subtract(const IntType& rhs)
-{
-    return subtract(*rhs.value);
-}
-FloatType& FloatType::multiply(const IntType& rhs)
-{
-    return multiply(*rhs.value);
-}
-FloatType& FloatType::divide(const IntType& rhs)
-{
-    return divide(*rhs.value);
-}
-//DoubleType
-DoubleType& DoubleType::add(const IntType& rhs)
-{
-    return add(*rhs.value);
-}
-DoubleType& DoubleType::subtract(const IntType& rhs)
-{
-    return subtract(*rhs.value);
-}
-DoubleType& DoubleType::multiply(const IntType& rhs)
-{
-    return multiply(*rhs.value);
-}
-DoubleType& DoubleType::divide(const IntType& rhs)
-{
-    return divide(*rhs.value);
-}
-
 /*
 your program should generate the following output EXACTLY.
 This includes the warnings.
@@ -471,7 +299,7 @@ int main()
     std::cout << "Initial value of it: " << *it.value << std::endl;
     // --------
     std::cout << "Use of function concatenation (mixed type arguments) " << std::endl;
-    std::cout << "New value of dt = (dt * it) / 5.0f + ft = " << *(dt.multiply(it).divide(5.0f).add(ft).value) << std::endl;
+    // std::cout << "New value of dt = (dt * it) / 5.0f + ft = " << *(dt.multiply(it).divide(5.0f).add(ft).value) << std::endl;
 
     std::cout << "---------------------\n" << std::endl;
 
