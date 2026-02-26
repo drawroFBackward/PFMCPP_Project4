@@ -54,13 +54,29 @@ struct HeapA
 	}
 };
 
+void part3()
+{
+    FloatType ft(5.5f);
+    DoubleType dt(11.1);
+    IntType it(34);
+    DoubleType pi(3.14);
+
+    std::cout << "The result of FloatType^4 divided by IntType is: " << ft.multiply(ft).multiply(ft).divide(it) << std::endl;
+    std::cout << "The result of DoubleType times 3 plus IntType is : " << dt.multiply(3).add(it) << std::endl;
+    std::cout << "The result of IntType divided by 3.14 multiplied by DoubleType minus FloatType is: " << it.divide(pi).multiply(dt).subtract(ft) << std::endl;
+    std::cout << "An operation followed by attempts to divide by 0, which are ignored and warns user: " << std::endl;
+    std::cout << it.multiply(it).divide(0).divide(0.0f).divide(0.0) << std::endl;
+
+    std::cout << "FloatType x IntType  =  " << it.multiply(ft) << std::endl;
+    std::cout << "(IntType + DoubleType + FloatType) x 24 = " << it.add(dt).add(ft).multiply(24) << std::endl;
+}
+
 /*
 your program should generate the following output EXACTLY.
 This includes the warnings.
-Use a service like https://www.diffchecker.com/diff to compare your output. 
-you'll learn to solve the conversion warnings in the next project part.
+The output should have zero warnings.
+Use a service like https://www.diffchecker.com/diff to compare your output.
 
-18 warnings generated.
 FloatType add result=4
 FloatType subtract result=2
 FloatType multiply result=4
@@ -82,11 +98,11 @@ New value of ft = (ft + 3.0f) * 1.5f / 5.0f = 0.975
 
 Initial value of dt: 0.8
 Initial value of it: 590
-Use of function concatenation (mixed type arguments) 
+Use of function concatenation (mixed type arguments)
 New value of dt = (dt * it) / 5.0f + ft = 95.375
 ---------------------
 
-Intercept division by 0 
+Intercept division by 0
 New value of it = it / 0 = error: integer division by zero is an error and will crash the program!
 590
 New value of ft = ft / 0 = warning: floating point division by zero!
@@ -95,6 +111,16 @@ New value of dt = dt / 0 = warning: floating point division by zero!
 inf
 ---------------------
 
+The result of FloatType^4 divided by IntType is: 26.9136
+The result of DoubleType times 3 plus IntType is : 67.3
+The result of IntType divided by 3.14 multiplied by DoubleType minus FloatType is: 711
+An operation followed by attempts to divide by 0, which are ignored and warns user:
+error: integer division by zero is an error and will crash the program!
+error: integer division by zero is an error and will crash the program!
+error: integer division by zero is an error and will crash the program!
+505521
+FloatType x IntType  =  13143546
+(IntType + DoubleType + FloatType) x 24 = 315447336
 good to go!
 
 
@@ -210,54 +236,6 @@ struct IntType
         delete value;
 	}
 };
-/*
-your program should generate the following output EXACTLY.
-This includes the warnings.
-Use a service like https://www.diffchecker.com/diff to compare your output.
-you'll learn to solve the conversion warnings in the next project part.
-
-18 warnings generated.
-FloatType add result=4
-FloatType subtract result=2
-FloatType multiply result=4
-FloatType divide result=0.25
-
-DoubleType add result=4
-DoubleType subtract result=2
-DoubleType multiply result=4
-DoubleType divide result=0.8
-
-IntType add result=4
-IntType subtract result=2
-IntType multiply result=4
-IntType divide result=1
-
-Chain calculation = 590
-New value of ft = (ft + 3.0f) * 1.5f / 5.0f = 0.975
----------------------
-
-Initial value of dt: 0.8
-Initial value of it: 590
-Use of function concatenation (mixed type arguments)
-New value of dt = (dt * it) / 5.0f + ft = 95.375
----------------------
-
-Intercept division by 0
-New value of it = it / 0 = error: integer division by zero is an error and will crash the program!
-590
-New value of ft = ft / 0 = warning: floating point division by zero!
-inf
-New value of dt = dt / 0 = warning: floating point division by zero!
-inf
----------------------
-
-good to go!
-
-
-
-
-
-*/
 
 #include <iostream>
 
