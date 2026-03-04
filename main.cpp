@@ -143,11 +143,16 @@ struct FloatType
     FloatType& subtract(float rhs);
     FloatType& multiply(float rhs);
     FloatType& divide(float rhs);
-	float* value = new float;
+    operator float() const
+    {
+        return *value;
+    }
     ~FloatType()
     {
         delete value;
-	}
+    }
+private:
+	float* value = new float;
 };
 
 FloatType& FloatType::add(float rhs)
@@ -188,11 +193,16 @@ struct DoubleType
     DoubleType& subtract(double rhs);
     DoubleType& multiply(double rhs);
     DoubleType& divide(double rhs);
-	double* value = new double;
     ~DoubleType()
     {
         delete value;
 	}
+    operator double() const
+    {
+        return *value;
+	}
+private:
+    double* value = new double;
 };
 
 DoubleType& DoubleType::add(double rhs)
@@ -233,11 +243,16 @@ struct IntType
     IntType& subtract(int rhs);
     IntType& multiply(int rhs);
     IntType& divide(int rhs);
-    int* value = new int;
     ~IntType()
     {
         delete value;
 	}
+    operator int() const
+    {
+        return *value;
+	}
+private:
+    int* value = new int;
 };
 
 IntType& IntType::add(int rhs)
